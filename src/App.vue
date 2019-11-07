@@ -5,19 +5,11 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Data input</span>
       </v-toolbar-title>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-        class="hidden-sm-and-down"
-      />
     </v-app-bar>
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <List />
+          <List v-bind:tableData="userData" />
         </v-row>
       </v-container>
     </v-content>
@@ -48,6 +40,11 @@ export default {
     // Triggered when `modalClosed` event is emitted by the child.
     updateShowModal(isModalClosed) {
       this.showModal = !isModalClosed;
+    }
+  },
+  computed: {
+    userData() {
+      return this.$store.getters.allUserData;
     }
   }
 };

@@ -2,7 +2,7 @@
   <v-dialog v-model="isVisible" width="800px">
     <v-card>
       <v-card-title class="grey darken-2">Create contact</v-card-title>
-      <v-form ref="form" :lazy-validation="false" v-model="valid">
+      <v-form ref="form" :lazy-validation="true" v-model="valid">
         <v-container>
           <v-row>
             <v-col cols="6">
@@ -15,7 +15,7 @@
               <v-text-field v-model="email" :rules="emailRules" label="E-mail" required />
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Query" />
+              <v-text-field v-model="query" label="Query" />
             </v-col>
           </v-row>
         </v-container>
@@ -43,7 +43,8 @@ export default {
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+    ],
+    query: ""
   }),
   methods: {
     closeModal() {
@@ -52,7 +53,15 @@ export default {
     },
     submitForm() {
       if (this.$refs.form.validate()) {
-        alert("form submited");
+        let newUserData = {
+          name: this.name,
+          surname: this.surname,
+          email: this.email,
+          query: this.query
+        };
+        this.$store.commit("addUserRecord", newUserData);
+
+        this.closeModal();
       }
     }
   }
