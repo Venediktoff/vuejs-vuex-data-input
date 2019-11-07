@@ -1,60 +1,54 @@
-<template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+  <template>
+  <v-app id="inspire">
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <span class="hidden-sm-and-down">Data input</span>
+      </v-toolbar-title>
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        label="Search"
+        class="hidden-sm-and-down"
+      />
     </v-app-bar>
-
     <v-content>
-      <HelloWorld/>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <List />
+        </v-row>
+      </v-container>
     </v-content>
+    <v-btn bottom color="pink" dark fab fixed right @click="showModal = !showModal">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+    <InputForm v-bind:isVisible="showModal" v-on:modalClose="updateShowModal" />
   </v-app>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld';
+import List from "./components/List";
+import InputForm from "./components/InputForm";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    List,
+    InputForm
   },
 
   data: () => ({
-    //
+    showModal: false
   }),
+  methods: {
+    // Triggered when `modalClosed` event is emitted by the child.
+    updateShowModal(isModalClosed) {
+      this.showModal = !isModalClosed;
+    }
+  }
 };
 </script>
