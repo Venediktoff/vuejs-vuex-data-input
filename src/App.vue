@@ -1,16 +1,16 @@
 
   <template>
-  <v-app id="inspire">
+  <v-app>
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Data input</span>
       </v-toolbar-title>
     </v-app-bar>
     <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
+      <v-container fluid>
+        <v-layout child-flex>
           <List v-bind:tableData="userData" />
-        </v-row>
+        </v-layout>
       </v-container>
     </v-content>
     <v-btn bottom color="pink" dark fab fixed right @click="showModal = !showModal">
