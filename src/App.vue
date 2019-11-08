@@ -87,6 +87,7 @@ export default {
 .text-right {
   width: 100%;
 }
+
 .text-right * {
   float: right;
 }
