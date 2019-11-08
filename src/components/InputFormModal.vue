@@ -1,7 +1,7 @@
 <template>
-  <v-dialog v-model="isVisible" width="800px">
+  <v-dialog v-model="isVisible" persistent width="800px">
     <v-card>
-      <v-card-title class="grey darken-2">Create contact</v-card-title>
+      <v-card-title class="white">New record</v-card-title>
       <v-form ref="form" :lazy-validation="true" v-model="valid">
         <v-container>
           <v-row>

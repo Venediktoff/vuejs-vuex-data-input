@@ -9,6 +9,7 @@
       :search="search"
       :items-per-page="10"
       class="elevation-1"
+      no-data-text="No records yet"
     ></v-data-table>
   </v-card>
 </template>
